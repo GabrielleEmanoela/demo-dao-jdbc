@@ -1,34 +1,54 @@
 package br.com.gabrielle.aplicacao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 
 import br.com.gabrielle.db.DB;
 
 public class Programa {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 
 		Connection conn = null;
-		Statement stt = null;
-		ResultSet rs = null;
+		PreparedStatement st = null;
+
 		try {
 
 			conn = DB.getConnection();
 
-			stt = conn.createStatement();
-			rs = stt.executeQuery("select * from cliente");
+			st = conn.prepareStatement(
 
-			while (rs.next()) {
-				System.out.println(rs.getInt("id") + ", " + rs.getString("nome"));
+					"INSERT INTO cliente " + "(nome, idade, endereco)" + "VALUES" + "(?,?,?)",
+					Statement.RETURN_GENERATED_KEYS
+
+			);
+			st.setString(1, "Gabrielle");
+			st.setInt(2, 555);
+			st.setString(3, "Av Planalto Jardim bela vista");
+
+			int rowsAffected = st.executeUpdate();
+
+			if (rowsAffected > 0) {
+				ResultSet rs = st.getGeneratedKeys();
+				while (rs.next()) {
+					int id = rs.getInt(1);
+					System.out.println("Pronto Id= " + id);
+
+				}
+			} else {
+				System.out.println("Nennhuma linha foi alterada");
 			}
-		} catch (Exception e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DB.fecharDeclaracao(stt);
-			DB.fecharResultado(rs);
+			DB.fecharDeclaracao(st);
 			DB.closeConnection();
 		}
+
 	}
 }
