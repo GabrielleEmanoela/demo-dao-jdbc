@@ -1,10 +1,12 @@
-package db;
+package br.com.gabrielle.db;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 public class DB {
@@ -17,7 +19,7 @@ public class DB {
 			try {
 				Properties prop = carregarPropriedades();
 				String url = prop.getProperty("dburl");
-					conn = DriverManager.getConnection(url, prop);
+				conn = DriverManager.getConnection(url, prop);
 			} catch (SQLException e) {
 				throw new DbExcecao(e.getMessage());
 			}
@@ -48,6 +50,28 @@ public class DB {
 			return prop;
 		} catch (IOException e) {
 			throw new DbExcecao(e.getMessage());
+
+		}
+	}
+
+	public static void fecharDeclaracao(Statement st) {
+		if (st != null) {
+			try {
+				st.close();
+			} catch (SQLException e) {
+				throw new DbExcecao(e.getMessage());
+
+			}
+		}
+	}
+
+	public static void fecharResultado(ResultSet rs) {
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				throw new DbExcecao(e.getMessage());
+			}
 
 		}
 
