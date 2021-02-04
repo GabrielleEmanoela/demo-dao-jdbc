@@ -19,17 +19,18 @@ public class Programa {
 		try {
 
 			conn = DB.getConnection();
+			/*
+			 * st = conn.prepareStatement(
+			 * 
+			 * "INSERT INTO cliente " + "(nome, idade, endereco)" + "VALUES" + "(?,?,?)",
+			 * Statement.RETURN_GENERATED_KEYS
+			 * 
+			 * ); st.setString(1, "Gabrielle"); st.setInt(2, 555); st.setString(3,
+			 * "Av Planalto Jardim bela vista");
+			 */
 
-			st = conn.prepareStatement(
-
-					"INSERT INTO cliente " + "(nome, idade, endereco)" + "VALUES" + "(?,?,?)",
-					Statement.RETURN_GENERATED_KEYS
-
-			);
-			st.setString(1, "Gabrielle");
-			st.setInt(2, 555);
-			st.setString(3, "Av Planalto Jardim bela vista");
-
+			st = conn.prepareStatement("insert into cliente (nome) values('Gabrielle'),('Silva')",
+					Statement.RETURN_GENERATED_KEYS);
 			int rowsAffected = st.executeUpdate();
 
 			if (rowsAffected > 0) {
