@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import br.com.gabrielle.db.DB;
+import br.com.gabrielle.db.DbIntegrityException;
 
 public class Programa {
 
@@ -16,19 +17,17 @@ public class Programa {
 
 		try {
 			conn = DB.getConnection();
-			
-			st = conn.prepareStatement("UPDATE cliente " + "SET idade = idade + ? " // Selecionando
-					+ "WHERE " // Restrição na atualização
-					+ "(ultimacompra = ?)");
 
-			st.setDouble(1, 5);
-			st.setInt(2, 10);
+			st = conn.prepareStatement("DELETE FROM cliente " + "WHERE " // comando de restricao
+					+ "ultimacompra = ?");
+
+			st.setDouble(1, 0);
 
 			int rowsAffected = st.executeUpdate();
 			System.out.println("Pronto! linhas afetadas " + rowsAffected);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new DbIntegrityException(e.getMessage());
 		} finally {
 
 			DB.closeConnection();
