@@ -1,20 +1,23 @@
 package br.com.gabrielle.aplicacao;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.ParseException;
 
-import br.com.gabrielle.db.DB;
-import br.com.gabrielle.db.DbExcecao;
+import java.util.Date;
+
+
+import br.com.gabrielle.modelo.entidades.Departamento;
+import br.com.gabrielle.modelo.entidades.Funcionario;
 
 public class Programa {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 
-		br.com.gabrielle.modelo.entidades.Departamento obj = new br.com.gabrielle.modelo.entidades.Departamento(1, "Books");
+
+		Departamento obj = new Departamento(1, "Books");
 
 		System.out.println(obj);
+		Funcionario funcionario = new Funcionario(21, "Bob", "gabi@gmail.com", new Date(), 3500, obj);
+
+		System.out.println(funcionario);
 
 	}
 }
