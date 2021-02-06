@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Seller implements Serializable {
 
     private Integer id;
-    private  String nome;
+    private String nome;
     private String email;
     private Date aniversario;
     private  double baseSalario;

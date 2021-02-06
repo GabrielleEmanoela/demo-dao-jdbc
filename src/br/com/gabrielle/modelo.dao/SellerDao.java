@@ -1,5 +1,7 @@
 package br.com.gabrielle.modelo.dao;
 
+import br.com.gabrielle.modelo.entidades.Seller;
+
 import java.util.List;
 
 public interface SellerDao {
@@ -9,7 +11,7 @@ public interface SellerDao {
 
     void deleteById(Integer id);
 
-    SellerDao findById(Integer id);
+    Seller findById(Integer id);
 
     List<SellerDao> findAll();
 

@@ -7,9 +7,14 @@ public class Department implements Serializable {
 
     private Integer id;
     private String nome;
-    public Department(Integer id, String nome){
+
+    public Department(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
+
+    }
+
+    public Department() {
 
     }
 
