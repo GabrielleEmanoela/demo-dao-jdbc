@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Funcionario implements Serializable {
+public class Seller implements Serializable {
 
     private Integer id;
     private  String nome;
@@ -13,19 +13,19 @@ public class Funcionario implements Serializable {
     private  double baseSalario;
 
 
-    private Departamento departamento;
+    private Department department;
 
-    public Funcionario(){
+    public Seller(){
 
     }
 
-    public Funcionario(Integer id, String nome, String email, Date aniversario, double baseSalario, Departamento departamento) {
+    public Seller(Integer id, String nome, String email, Date aniversario, double baseSalario, Department department) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.aniversario = aniversario;
         this.baseSalario = baseSalario;
-        this.departamento = departamento;
+        this.department = department;
     }
 
     public Integer getId() {
@@ -68,19 +68,19 @@ public class Funcionario implements Serializable {
         this.baseSalario = baseSalario;
     }
 
-    public Departamento getDepartamento() {
-        return departamento;
+    public Department getDepartamento() {
+        return department;
     }
 
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
+    public void setDepartamento(Department department) {
+        this.department = department;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Funcionario that = (Funcionario) o;
+        Seller that = (Seller) o;
         return Objects.equals(id, that.id);
     }
 
@@ -97,7 +97,7 @@ public class Funcionario implements Serializable {
                 ", email='" + email + '\'' +
                 ", aniversario=" + aniversario +
                 ", baseSalario=" + baseSalario +
-                ", departamento=" + departamento +
+                ", departamento=" + department +
                 '}';
     }
 }

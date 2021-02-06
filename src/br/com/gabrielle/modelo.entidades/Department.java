@@ -3,11 +3,11 @@ package br.com.gabrielle.modelo.entidades;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Departamento implements Serializable {
+public class Department implements Serializable {
 
     private Integer id;
     private String nome;
-    public Departamento(Integer id, String nome){
+    public Department(Integer id, String nome){
         this.id = id;
         this.nome = nome;
 
@@ -33,7 +33,7 @@ public class Departamento implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Departamento that = (Departamento) o;
+        Department that = (Department) o;
         return Objects.equals(id, that.id);
     }
 

@@ -1,7 +1,5 @@
 package br.com.gabrielle.modelo.dao;
 
-import br.com.gabrielle.modelo.entidades.Departamento;
-
 import java.util.List;
 
 public interface SellerDao {
