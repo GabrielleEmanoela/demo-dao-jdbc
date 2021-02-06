@@ -49,4 +49,7 @@ public class Departamento implements Serializable {
                 ", nome='" + nome + '\'' +
                 '}';
     }
+
+    public static interface DepartamentDao {
+    }
 }
